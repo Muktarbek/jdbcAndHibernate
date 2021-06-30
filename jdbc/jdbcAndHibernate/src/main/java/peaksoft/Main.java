@@ -16,25 +16,26 @@ public class Main {
         UserService userService = new UserServiceImpl();
         userService.createUsersTable();
 
-        User user1 = new User(1, "Muktar", "Kubanov", (byte) 20);
+        User user1 = new User("Muktar", "Kubanov", (byte) 20);
         userService.saveUser(user1.getName(), user1.getLastName(), user1.getAge());
 
-        User user2 = new User(2, "Атабек", "Исакунов", (byte) 20);
+        User user2 = new User( "Атабек", "Исакунов", (byte) 20);
         userService.saveUser(user2.getName(), user2.getLastName(), user2.getAge());
 
-        User user3 = new User(3, "Нурпери", "Арзыматова", (byte) 19);
+        User user3 = new User("Нурпери", "Арзыматова", (byte) 19);
         userService.saveUser(user3.getName(), user3.getLastName(), user3.getAge());
 
-        User user4 = new User(4, "Айсезим", "Маматова", (byte) 19);
+        User user4 = new User("Айсезим", "Маматова", (byte) 19);
         userService.saveUser(user4.getName(), user4.getLastName(), user4.getAge());
 
-        ArrayList<User> users = (ArrayList<User>) userService.getAllUsers();
+       ArrayList<User> users = (ArrayList<User>) userService.getAllUsers();
          for (User user:users){
              System.out.println(user);
          }
-
+        System.out.println(users.size());
          userService.cleanUsersTable();
-         userService.dropUsersTable();
+      userService.dropUsersTable();
+        Util.shutDown();
 
     }
 }

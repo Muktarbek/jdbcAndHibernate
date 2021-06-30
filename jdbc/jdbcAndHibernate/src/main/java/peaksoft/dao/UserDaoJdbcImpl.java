@@ -31,6 +31,7 @@ public class UserDaoJdbcImpl implements UserDao {
           }catch (Exception ex){
               System.out.println(ex.getMessage());
           }
+        System.out.println("Creating table ");
     }
 
     public void dropUsersTable() {
@@ -39,10 +40,12 @@ public class UserDaoJdbcImpl implements UserDao {
        try(Connection conn =util.connect();
             Statement stmt = conn.createStatement()){
            stmt.executeQuery(SQL);
+
        }
        catch (Exception ex ){
            System.out.println(ex.getMessage());
        }
+       System.out.println("Drop table -");
     }
 
     public void saveUser(String name, String lastName, byte age) {
@@ -64,12 +67,12 @@ public class UserDaoJdbcImpl implements UserDao {
 
         String SQL = "DELETE  FROM  user_dao WHERE id = ?;";
 
-        int m = 0;
+
 
         try(Connection conn = util.connect();
             PreparedStatement statement = conn.prepareStatement(SQL)){
             statement.setLong(1,id);
-           m =  statement.executeUpdate();
+          statement.executeUpdate();
         }catch (Exception ex){
             System.out.println(ex.getMessage());
         }
@@ -85,7 +88,7 @@ public class UserDaoJdbcImpl implements UserDao {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(SQL)){
             while (rs.next()){
-              user = new User(rs.getInt("id"),rs.getString("name"),rs.getString("lastName"),(byte)rs.getInt("age"));
+              user = new User(rs.getString("name"),rs.getString("lastName"),(byte)rs.getInt("age"));
                users.add(user);
             }
         }catch (Exception ex){

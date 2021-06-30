@@ -1,10 +1,11 @@
 package peaksoft.model;
 
 import javax.persistence.*;
-
-@Table
+@Entity
+@Table(name="user_dao")
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column
@@ -19,11 +20,10 @@ public class User {
     public User() {
     }
 
-    public User(int i, String name, String lastName, Byte age) {
+    public User( String name, String lastName, Byte age) {
         this.name = name;
         this.lastName = lastName;
         this.age = age;
-        this.id = Long.valueOf(i);
     }
 
     @Override
