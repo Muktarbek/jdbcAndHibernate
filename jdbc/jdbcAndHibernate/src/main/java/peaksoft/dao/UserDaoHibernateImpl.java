@@ -30,7 +30,7 @@ public class UserDaoHibernateImpl implements UserDao {
                 System.out.println(ex.getMessage());
 
             }
-            System.out.println("Added successfully  + tuzuldu ");
+            System.out.println("Create table succesfully ");
         }
 
     @Override
@@ -44,7 +44,7 @@ public class UserDaoHibernateImpl implements UserDao {
         }catch (Exception ex){
             System.out.println(ex.getMessage());
         }
-        System.out.println("Drop --");
+        System.out.println("Drop tables successfully");
     }
 
     @Override
@@ -88,7 +88,6 @@ public class UserDaoHibernateImpl implements UserDao {
       List<User> users = session.createQuery("from User").list() ;
       session.getTransaction();
       session.close();
-      System.out.printf("alyndy");
       return users;
   }catch (Exception ex){
       System.out.println(ex.getMessage());
@@ -106,7 +105,7 @@ public class UserDaoHibernateImpl implements UserDao {
             session.getTransaction().commit();
             session.close();
             System.out.println("All employees were deleted");
-        } catch (Exception e) {
+        } catch(Exception e) {
             e.getMessage();
         }
     }
